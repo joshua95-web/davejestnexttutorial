@@ -28,4 +28,16 @@ describe("Calculator", () => {
       expect(resultArea).toHaveTextContent("13");
     });
   });
+  it("subtracts numbers", async () => {
+    render(<Calculator />);
+    const num1input = screen.getByTestId("num1");
+    const num2input = screen.getByTestId("num2");
+    const subtractButton = screen.getByTestId("subtract");
+    const resultArea = screen.getByTestId("result");
+    fireEvent.change(num1input, { target: { value: "8" } });
+    fireEvent.change(num2input, { target: { value: "5" } });
+    subtractButton.click();
+    await waitFor(() => {});
+    expect(resultArea).toHaveTextContent("3");
+  });
 });
