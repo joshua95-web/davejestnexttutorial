@@ -40,4 +40,28 @@ describe("Calculator", () => {
     await waitFor(() => {});
     expect(resultArea).toHaveTextContent("3");
   });
+  it("multiplies numbers", async () => {
+    render(<Calculator />);
+    const num1input = screen.getByTestId("num1");
+    const num2input = screen.getByTestId("num2");
+    const multiplyButton = screen.getByTestId("multiply");
+    const resultArea = screen.getByTestId("result");
+    fireEvent.change(num1input, { target: { value: "8" } });
+    fireEvent.change(num2input, { target: { value: "5" } });
+    multiplyButton.click();
+    await waitFor(() => {});
+    expect(resultArea).toHaveTextContent("40");
+  });
+  it("divides numbers", async () => {
+    render(<Calculator />);
+    const num1input = screen.getByTestId("num1");
+    const num2input = screen.getByTestId("num2");
+    const divideButton = screen.getByTestId("divide");
+    const resultArea = screen.getByTestId("result");
+    fireEvent.change(num1input, { target: { value: "8" } });
+    fireEvent.change(num2input, { target: { value: "4" } });
+    divideButton.click();
+    await waitFor(() => {});
+    expect(resultArea).toHaveTextContent("2");
+  });
 });
